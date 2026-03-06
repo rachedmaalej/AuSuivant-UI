@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AuSuivant — 5 Design Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&family=Nunito:wght@600;700;800;900&family=DM+Sans:wght@300;400;500;600&family=Albert+Sans:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=Lato:wght@300;400;700&family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: #0f0f0f;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    color: #fff;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #0f0f0f;
+    border-bottom: 1px solid #1e1e1e;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    color: #fff;
+    flex-shrink: 0;
+    margin-right: 16px;
+  }
+  .nav-brand span { color: #6ee7b7; }
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tab {
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    color: #888;
+    background: transparent;
+  }
+  .nav-tab:hover { color: #ddd; background: #1a1a1a; }
+  .nav-tab.active { background: #fff; color: #000; border-color: #fff; }
+
+  /* ===== CONCEPT SECTIONS ===== */
+  .concept { display: none; min-height: 100vh; }
+  .concept.visible { display: block; }
+
+  .concept-header {
+    padding: 48px 40px 32px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .concept-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .concept-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .concept-tagline {
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 24px;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .concept-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #333;
+    color: #ccc;
+  }
+  
+  .screens-grid {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 320px 320px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  
+  .screen-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 12px;
+  }
+
+  .screen-wrapper {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  }
+
+  .design-notes {
+    padding: 0;
+  }
+  .notes-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .note-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .note-item:last-child { border-bottom: none; }
+  .note-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 6px;
+  }
+  .note-value {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.6;
+  }
+
+  /* ====================================================
+     CONCEPT 1 — ÉLÉGANCE PARISIENNE
+  ==================================================== */
+  .c1-screen {
+    background: #FAF8F5;
+    font-family: 'Lato', sans-serif;
+    height: 680px;
+    overflow: hidden;
+    position: relative;
+  }
+  .c1-topbar {
+    background: #FAF8F5;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #E8E2DA;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .c1-clinic-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1A1209;
+    letter-spacing: 0.02em;
+  }
+  .c1-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .c1-lang {
+    font-size: 11px;
+    color: #9A8F82;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .c1-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #B5945A;
+  }
+  .c1-menu-icon { color: #1A1209; font-size: 22px; }
+
+  .c1-stats {
+    padding: 20px 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid #E8E2DA;
+    margin: 0 0 0;
+  }
+  .c1-stat { padding: 4px 0 16px; }
+  .c1-stat:first-child { border-right: 1px solid #E8E2DA; padding-right: 16px; }
+  .c1-stat:last-child { padding-left: 16px; }
+  .c1-stat-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9A8F82;
+    margin-bottom: 4px;
+  }
+  .c1-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: #1A1209;
+    line-height: 1;
+  }
+  .c1-stat-sub {
+    font-size: 11px;
+    color: #9A8F82;
+    margin-top: 2px;
+  }
+
+  .c1-search-bar {
+    margin: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #E0D9CF;
+    border-radius: 4px;
+    padding: 10px 14px;
+    background: #fff;
+  }
+  .c1-search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: #9A8F82;
+    width: 100%;
+  }
+
+  .c1-section-label {
+    padding: 0 20px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9A8F82;
+    margin-bottom: 8px;
+  }
+  
+  .c1-current-card {
+    margin: 0 20px 16px;
+    background: #1A1209;
+    border-radius: 4px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .c1-current-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(181,148,90,0.12));
+  }
+  .c1-patient-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B5945A;
+    margin-bottom: 8px;
+  }
+  .c1-patient-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+  .c1-patient-meta {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+  }
+  .c1-card-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .c1-btn-primary {
+    background: #B5945A;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 3px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .c1-btn-ghost {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 8px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .c1-queue { padding: 0 20px; }
+  .c1-queue-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid #F0EAE0;
+  }
+  .c1-pos {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: #C8BFAF;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .c1-qname {
+    font-size: 14px;
+    color: #1A1209;
+    flex: 1;
+    font-weight: 400;
+  }
+  .c1-qmeta {
+    font-size: 11px;
+    color: #9A8F82;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .c1-qdot { width: 6px; height: 6px; border-radius: 50%; background: #B5945A; }
+
+  .c1-cta-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 20px;
+    background: #1A1209;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #2e2516;
+  }
+  .c1-cta-text {
+    font-size: 13px;
+    color: #fff;
+    flex: 1;
+  }
+  .c1-cta-name { color: #B5945A; }
+
+  /* ====================================================
+  /* ====================================================
+     CONCEPT 2 — INSPIRÉ DE DOCTOLIB
+     France's #1 medical appointment app · 70M+ users
+     Electric blue on pure white — the palette French
+     doctors already trust and see every single day.
+  ==================================================== */
+  .c2-screen {
+    background: #F5F7FF;
+    font-family: 'Outfit', sans-serif;
+    height: 680px;
+    overflow: hidden;
+    position: relative;
+  }
+  .c2-topbar {
+    background: #fff;
+    padding: 16px 18px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #E8EBF8;
+  }
+  .c2-clinic-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0A1628;
+    letter-spacing: -0.3px;
+  }
+  .c2-topbar-right { display: flex; align-items: center; gap: 10px; }
+  .c2-status-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #EBF5FF;
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1A56DB;
+    letter-spacing: 0.02em;
+  }
+  .c2-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #1A56DB; }
+  .c2-menu-btn {
+    width: 34px; height: 34px;
+    border: 1px solid #E8EBF8;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff;
+    cursor: pointer;
+    color: #0A1628;
+    font-size: 20px;
+  }
+
+  .c2-stats {
+    margin: 14px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #E8EBF8;
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    box-shadow: 0 1px 4px rgba(26,86,219,0.06);
+  }
+  .c2-stat-divider { background: #E8EBF8; }
+  .c2-stat { padding: 0 14px; }
+  .c2-stat:first-child { padding-left: 0; }
+  .c2-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A9BC4;
+    margin-bottom: 4px;
+  }
+  .c2-stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A56DB;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .c2-stat-sub { font-size: 11px; color: #8A9BC4; margin-top: 3px; }
+
+  .c2-search-row {
+    padding: 0 14px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .c2-search {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #E8EBF8;
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: #0A1628;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(26,86,219,0.04);
+  }
+  .c2-search::placeholder { color: #B0BEDD; }
+  .c2-add-btn {
+    width: 44px; height: 44px;
+    background: #1A56DB;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26,86,219,0.3);
+  }
+
+  .c2-section-label {
+    padding: 0 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8A9BC4;
+    margin-bottom: 8px;
+  }
+
+  .c2-current {
+    margin: 0 14px 14px;
+    background: #1A56DB;
+    border-radius: 14px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(26,86,219,0.25);
+  }
+  .c2-current::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .c2-current::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 30px;
+    width: 80px; height: 80px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .c2-curr-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+  .c2-curr-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+    letter-spacing: -0.4px;
+    position: relative;
+    z-index: 1;
+  }
+  .c2-curr-meta { font-size: 11px; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+  .c2-curr-actions { display: flex; gap: 8px; position: relative; z-index: 1; }
+  .c2-finish-btn {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .c2-call-btn {
+    width: 38px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.8);
+    font-size: 18px;
+  }
+
+  .c2-queue { padding: 0 14px; }
+  .c2-queue-item {
+    background: #fff;
+    border: 1px solid #E8EBF8;
+    border-radius: 12px;
+    padding: 11px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(26,86,219,0.04);
+  }
+  .c2-qpos {
+    width: 28px; height: 28px;
+    background: #EBF0FF;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1A56DB;
+    flex-shrink: 0;
+  }
+  .c2-qname { font-size: 14px; font-weight: 600; color: #0A1628; flex: 1; }
+  .c2-qmeta { font-size: 11px; color: #8A9BC4; display: flex; align-items: center; gap: 4px; }
+  .c2-qdot { width: 6px; height: 6px; border-radius: 50%; background: #1A56DB; }
+  .c2-qicon { font-size: 18px; color: #B0BEDD; }
+
+  .c2-cta {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 1px solid #E8EBF8;
+    padding: 12px 14px;
+  }
+  .c2-cta-btn {
+    width: 100%;
+    background: #1A56DB;
+    border: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 4px 12px rgba(26,86,219,0.3);
+  }
+
+  /* C2 Drawer */
+  .c2-drawer { background: #fff; }
+  .c2-drawer-handle { background: #E8EBF8; }
+  .c2-drawer-title { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: #0A1628; margin-bottom: 18px; }
+  .c2-dfield-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8A9BC4; margin-bottom: 6px; }
+  .c2-dfield-input {
+    width: 100%;
+    background: #F5F7FF;
+    border: 1.5px solid #E8EBF8;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: #0A1628;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.15s;
+  }
+  .c2-dfield-input:focus { border-color: #1A56DB; }
+  .c2-dchips { display: flex; gap: 8px; margin-bottom: 14px; }
+  .c2-dchip {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #F5F7FF;
+    border: 1.5px solid #E8EBF8;
+    color: #8A9BC4;
+    font-family: 'Outfit', sans-serif;
+  }
+  .c2-dchip.active { background: #EBF0FF; border-color: #1A56DB; color: #1A56DB; }
+  .c2-dsubmit {
+    width: 100%;
+    background: #1A56DB;
+    border: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(26,86,219,0.3);
+  }
+  .c3-screen {
+    background: #F4EFE8;
+    font-family: 'Figtree', sans-serif;
+    height: 680px;
+    overflow: hidden;
+    position: relative;
+  }
+  .c3-topbar {
+    background: #F4EFE8;
+    padding: 18px 18px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .c3-clinic-name { font-size: 15px; font-weight: 700; color: #1C1008; letter-spacing: -0.3px; }
+  .c3-topbar-chips { display: flex; align-items: center; gap: 8px; }
+  .c3-lang-chip {
+    background: #E8E0D3;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #7A6855;
+    border: none;
+    cursor: pointer;
+  }
+  .c3-menu-btn {
+    width: 34px; height: 34px;
+    background: #E8E0D3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    color: #1C1008;
+    font-size: 20px;
+  }
+
+  /* Bento grid stats */
+  .c3-bento {
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .c3-bento-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+  .c3-bento-card.accent {
+    background: #C5715A;
+  }
+  .c3-bento-card.accent .c3-bento-label { color: rgba(255,255,255,0.65); }
+  .c3-bento-card.accent .c3-bento-value { color: #fff; }
+  .c3-bento-card.accent .c3-bento-sub { color: rgba(255,255,255,0.6); }
+  .c3-bento-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9A8470;
+    margin-bottom: 4px;
+  }
+  .c3-bento-value {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1C1008;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .c3-bento-sub { font-size: 11px; color: #9A8470; margin-top: 2px; }
+
+  .c3-search-row {
+    padding: 0 18px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .c3-search {
+    flex: 1;
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 13px;
+    color: #1C1008;
+    outline: none;
+  }
+  .c3-add-btn {
+    width: 44px; height: 44px;
+    background: #C5715A;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .c3-current {
+    margin: 0 18px 12px;
+    background: #1C1008;
+    border-radius: 16px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .c3-current::before {
+    content: 'EN CONSULTATION';
+    position: absolute;
+    top: 14px; right: 14px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.25);
+  }
+  .c3-curr-name { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 3px; letter-spacing: -0.5px; }
+  .c3-curr-meta { font-size: 11px; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+  .c3-curr-actions { display: flex; gap: 8px; }
+  .c3-end-btn {
+    background: #C5715A;
+    border: none;
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: 10px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .c3-phone-btn {
+    width: 38px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    font-size: 18px;
+  }
+
+  .c3-queue-section-label {
+    padding: 0 18px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9A8470;
+    margin-bottom: 8px;
+  }
+  .c3-queue { padding: 0 18px; }
+  .c3-queue-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #EAE3D8;
+  }
+  .c3-qpos {
+    width: 30px; height: 30px;
+    background: #EAE3D8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9A8470;
+    flex-shrink: 0;
+  }
+  .c3-qname { font-size: 14px; font-weight: 600; color: #1C1008; flex: 1; }
+  .c3-qmeta { font-size: 11px; color: #9A8470; display: flex; align-items: center; gap: 4px; }
+  .c3-time-dot { width: 6px; height: 6px; border-radius: 50%; background: #C5715A; }
+
+  .c3-cta {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 18px;
+    background: #1C1008;
+  }
+  .c3-cta-row { display: flex; align-items: center; gap: 10px; }
+  .c3-cta-arrow { color: #C5715A; font-size: 22px; }
+  .c3-cta-text { font-size: 14px; font-weight: 700; color: #fff; flex: 1; }
+  .c3-cta-name { color: #C5715A; }
+
+  /* ====================================================
+     CONCEPT 4 — INSPIRÉ DE DUOLINGO
+     France's top education app · 500M+ downloads globally
+     Vibrant green, rounded cards, bold numbers — the
+     palette that makes users come back every day.
+     Adapted from playful engagement to medical calm.
+  ==================================================== */
+  .c4-screen {
+    background: #F2F9F2;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+    height: 680px;
+    overflow: hidden;
+    position: relative;
+  }
+  .c4-topbar {
+    background: #fff;
+    padding: 16px 18px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid #4CAF50;
+  }
+  .c4-clinic-name {
+    font-size: 15px;
+    font-weight: 800;
+    color: #1A2E1A;
+    letter-spacing: -0.3px;
+  }
+  .c4-streak-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFF3CD;
+    border: 2px solid #FFD000;
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #7C5300;
+  }
+  .c4-menu-btn {
+    width: 34px; height: 34px;
+    border: 2px solid #E8F5E9;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff;
+    cursor: pointer;
+    color: #1A2E1A;
+    font-size: 20px;
+  }
+
+  .c4-stats {
+    margin: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .c4-stat-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 16px;
+    border: 2px solid #E8F5E9;
+    box-shadow: 0 4px 0 #C8E6C9;
+  }
+  .c4-stat-card.green {
+    background: #4CAF50;
+    border-color: #388E3C;
+    box-shadow: 0 4px 0 #2E7D32;
+  }
+  .c4-stat-card.green .c4-stat-label { color: rgba(255,255,255,0.7); }
+  .c4-stat-card.green .c4-stat-value { color: #fff; }
+  .c4-stat-card.green .c4-stat-sub { color: rgba(255,255,255,0.65); }
+  .c4-stat-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6AAF6A;
+    margin-bottom: 4px;
+  }
+  .c4-stat-value {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1A2E1A;
+    line-height: 1;
+    letter-spacing: -1.5px;
+  }
+  .c4-stat-sub { font-size: 11px; color: #6AAF6A; margin-top: 3px; font-weight: 700; }
+
+  .c4-search-row {
+    padding: 0 14px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .c4-search {
+    flex: 1;
+    background: #fff;
+    border: 2px solid #E8F5E9;
+    border-radius: 16px;
+    padding: 11px 14px;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A2E1A;
+    outline: none;
+  }
+  .c4-search::placeholder { color: #A5C8A5; }
+  .c4-add-btn {
+    width: 44px; height: 44px;
+    background: #4CAF50;
+    border-radius: 14px;
+    border: 2px solid #388E3C;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 0 #2E7D32;
+    transform: translateY(0);
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .c4-add-btn:active { transform: translateY(4px); box-shadow: none; }
+
+  .c4-section-label {
+    padding: 0 14px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6AAF6A;
+    margin-bottom: 8px;
+  }
+
+  .c4-current {
+    margin: 0 14px 14px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 16px;
+    border: 2px solid #E8F5E9;
+    box-shadow: 0 4px 0 #C8E6C9;
+    position: relative;
+    overflow: hidden;
+  }
+  .c4-curr-progress {
+    position: absolute;
+    top: 0; left: 0;
+    height: 4px;
+    width: 60%;
+    background: linear-gradient(90deg, #4CAF50, #81C784);
+    border-radius: 20px 20px 0 0;
+  }
+  .c4-curr-tag {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4CAF50;
+    margin-bottom: 6px;
+    margin-top: 4px;
+  }
+  .c4-curr-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: #1A2E1A;
+    margin-bottom: 3px;
+    letter-spacing: -0.5px;
+  }
+  .c4-curr-meta { font-size: 11px; color: #6AAF6A; margin-bottom: 14px; font-weight: 600; }
+  .c4-curr-actions { display: flex; gap: 8px; }
+  .c4-end-btn {
+    background: #4CAF50;
+    border: 2px solid #388E3C;
+    color: #fff;
+    padding: 9px 20px;
+    border-radius: 12px;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 0 #2E7D32;
+  }
+  .c4-phone-btn {
+    width: 40px;
+    background: #F2F9F2;
+    border: 2px solid #E8F5E9;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: #6AAF6A;
+    font-size: 18px;
+    box-shadow: 0 3px 0 #C8E6C9;
+  }
+
+  .c4-queue { padding: 0 14px; }
+  .c4-queue-item {
+    background: #fff;
+    border: 2px solid #E8F5E9;
+    border-radius: 16px;
+    padding: 11px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 3px 0 #C8E6C9;
+  }
+  .c4-qpos {
+    width: 30px; height: 30px;
+    background: #E8F5E9;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: #388E3C;
+    flex-shrink: 0;
+  }
+  .c4-qname { font-size: 14px; font-weight: 700; color: #1A2E1A; flex: 1; }
+  .c4-qmeta { font-size: 11px; color: #6AAF6A; display: flex; align-items: center; gap: 4px; font-weight: 700; }
+  .c4-qdot { width: 6px; height: 6px; border-radius: 50%; background: #4CAF50; }
+  .c4-qicon { font-size: 18px; color: #A5C8A5; }
+
+  .c4-cta {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 2px solid #E8F5E9;
+    padding: 12px 14px;
+  }
+  .c4-cta-btn {
+    width: 100%;
+    background: #4CAF50;
+    border: 2px solid #388E3C;
+    color: #fff;
+    padding: 14px;
+    border-radius: 16px;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 5px 0 #2E7D32;
+    letter-spacing: 0.01em;
+  }
+
+  /* C4 Drawer */
+  .c4-drawer { background: #fff; border-radius: 24px 24px 0 0; }
+  .c4-drawer-handle { background: #E8F5E9; }
+  .c4-drawer-title { font-family: 'Nunito', 'DM Sans', sans-serif; font-size: 22px; font-weight: 900; color: #1A2E1A; margin-bottom: 18px; }
+  .c4-dfield-label { font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #6AAF6A; margin-bottom: 6px; }
+  .c4-dfield-input {
+    width: 100%;
+    background: #F2F9F2;
+    border: 2px solid #E8F5E9;
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A2E1A;
+    outline: none;
+    margin-bottom: 12px;
+  }
+  .c4-dfield-input:focus { border-color: #4CAF50; }
+  .c4-dchips { display: flex; gap: 8px; margin-bottom: 14px; }
+  .c4-dchip {
+    padding: 9px 16px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #F2F9F2;
+    border: 2px solid #E8F5E9;
+    color: #6AAF6A;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+  }
+  .c4-dchip.active { background: #E8F5E9; border-color: #4CAF50; color: #2E7D32; }
+  .c4-dsubmit {
+    width: 100%;
+    background: #4CAF50;
+    border: 2px solid #388E3C;
+    color: #fff;
+    padding: 14px;
+    border-radius: 16px;
+    font-family: 'Nunito', 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #2E7D32;
+  }
+  .c5-screen {
+    background: #F8F7F4;
+    font-family: 'Albert Sans', sans-serif;
+    height: 680px;
+    overflow: hidden;
+    position: relative;
+  }
+  .c5-accent-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #7EB5A0, #A8C9BC, #D4B896);
+  }
+  .c5-topbar {
+    padding: 16px 18px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .c5-clinic-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C2B25;
+    letter-spacing: -0.3px;
+  }
+  .c5-present-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #EBF4EF;
+    border: 1px solid #C5DDD2;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #3A7A5E;
+  }
+  .c5-present-dot { width: 7px; height: 7px; border-radius: 50%; background: #5BAE88; }
+
+  .c5-stats {
+    margin: 0 18px 14px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    border: 1px solid #EAE7E0;
+  }
+  .c5-stat-divider { background: #EAE7E0; }
+  .c5-stat { padding: 0 16px; }
+  .c5-stat:first-child { padding-left: 0; }
+  .c5-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9AAD9F;
+    margin-bottom: 4px;
+  }
+  .c5-stat-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1C2B25;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .c5-stat-sub { font-size: 11px; color: #9AAD9F; margin-top: 2px; }
+  .c5-live-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #5BAE88;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .c5-search-row {
+    padding: 0 18px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .c5-search {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #EAE7E0;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 13px;
+    color: #1C2B25;
+    outline: none;
+  }
+  .c5-search::placeholder { color: #C0C9C4; }
+  .c5-add-btn {
+    width: 44px; height: 44px;
+    background: #7EB5A0;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .c5-section-label {
+    padding: 0 18px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9AAD9F;
+    margin-bottom: 8px;
+  }
+
+  .c5-current {
+    margin: 0 18px 14px;
+    background: #2C4A3E;
+    border-radius: 18px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .c5-current::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    background: rgba(126,181,160,0.15);
+    border-radius: 50%;
+  }
+  .c5-curr-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+  .c5-curr-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+    letter-spacing: -0.4px;
+  }
+  .c5-curr-meta { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+  .c5-curr-actions { display: flex; gap: 8px; }
+  .c5-end-btn {
+    background: #7EB5A0;
+    border: none;
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 12px;
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .c5-phone-btn {
+    width: 38px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+  }
+
+  .c5-queue { padding: 0 18px; }
+  .c5-queue-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 8px;
+    border: 1px solid #EAE7E0;
+  }
+  .c5-qpos {
+    width: 30px; height: 30px;
+    background: #EBF4EF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3A7A5E;
+    flex-shrink: 0;
+  }
+  .c5-qname { font-size: 14px; font-weight: 600; color: #1C2B25; flex: 1; }
+  .c5-qmeta { font-size: 11px; color: #9AAD9F; display: flex; align-items: center; gap: 4px; }
+  .c5-qdot { width: 6px; height: 6px; border-radius: 50%; background: #5BAE88; }
+
+  .c5-cta {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 18px;
+    background: #2C4A3E;
+  }
+  .c5-cta-row { display: flex; align-items: center; gap: 10px; }
+  .c5-cta-arrow { font-size: 20px; color: #7EB5A0; }
+  .c5-cta-text { font-size: 14px; font-weight: 700; color: #fff; flex: 1; }
+  .c5-cta-name { color: #7EB5A0; }
+
+
+  /* ====================================================
+     DRAWER / MODAL MOCKUPS
+  ==================================================== */
+  
+  /* All screens with drawers share this overlay pattern */
+  .screen-with-drawer {
+    position: relative;
+  }
+  .drawer-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+  }
+  .drawer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    border-radius: 24px 24px 0 0;
+    padding: 20px;
+  }
+  .drawer-handle {
+    width: 36px; height: 4px;
+    border-radius: 2px;
+    margin: 0 auto 18px;
+  }
+  
+  /* C1 Drawer */
+  .c1-drawer { background: #FAF8F5; }
+  .c1-drawer-handle { background: #E8E2DA; }
+  .c1-drawer-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #1A1209; margin-bottom: 20px; font-weight: 600; }
+  .c1-field-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9A8F82; margin-bottom: 6px; }
+  .c1-field-input {
+    width: 100%;
+    border: 1px solid #E0D9CF;
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #1A1209;
+    background: #fff;
+    outline: none;
+    margin-bottom: 14px;
+  }
+  .c1-chips { display: flex; gap: 8px; margin-bottom: 14px; }
+  .c1-chip {
+    padding: 7px 16px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: 1px solid #E0D9CF;
+    color: #9A8F82;
+    background: transparent;
+  }
+  .c1-chip.active { border-color: #B5945A; color: #B5945A; background: rgba(181,148,90,0.06); }
+  .c1-submit {
+    width: 100%;
+    background: #1A1209;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* C3 Drawer */
+  .c3-drawer { background: #F4EFE8; border-radius: 24px 24px 0 0; }
+  .c3-drawer-handle { background: #DDD5C6; }
+  .c3-drawer-title { font-size: 20px; font-weight: 700; color: #1C1008; margin-bottom: 18px; letter-spacing: -0.4px; }
+  .c3-dfield-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9A8470; margin-bottom: 6px; }
+  .c3-dfield-input {
+    width: 100%;
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 14px;
+    color: #1C1008;
+    outline: none;
+    margin-bottom: 12px;
+  }
+  .c3-dchips { display: flex; gap: 8px; margin-bottom: 14px; }
+  .c3-dchip {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #EAE3D8;
+    border: 2px solid transparent;
+    color: #9A8470;
+  }
+  .c3-dchip.active { border-color: #C5715A; color: #C5715A; background: rgba(197,113,90,0.08); }
+  .c3-dsubmit {
+    width: 100%;
+    background: #1C1008;
+    border: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 14px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* C5 Drawer */
+  .c5-drawer { background: #fff; border-radius: 24px 24px 0 0; }
+  .c5-drawer-handle { background: #EAE7E0; }
+  .c5-drawer-title { font-size: 20px; font-weight: 700; color: #1C2B25; margin-bottom: 18px; letter-spacing: -0.4px; }
+  .c5-dfield-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9AAD9F; margin-bottom: 6px; }
+  .c5-dfield-input {
+    width: 100%;
+    background: #F8F7F4;
+    border: 1px solid #EAE7E0;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 14px;
+    color: #1C2B25;
+    outline: none;
+    margin-bottom: 12px;
+  }
+  .c5-dchips { display: flex; gap: 8px; margin-bottom: 14px; }
+  .c5-dchip {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #F0F4F1;
+    border: 2px solid transparent;
+    color: #9AAD9F;
+  }
+  .c5-dchip.active { border-color: #7EB5A0; color: #2C4A3E; background: #EBF4EF; }
+  .c5-dsubmit {
+    width: 100%;
+    background: #7EB5A0;
+    border: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 14px;
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ===== Material Icons ===== */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 20px;
+    vertical-align: middle;
+    line-height: 1;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1200px) {
+    .screens-grid { grid-template-columns: 300px 300px; }
+    .design-notes { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .note-item { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+    .notes-title { grid-column: 1 / -1; }
+  }
+  @media (max-width: 780px) {
+    .screens-grid { grid-template-columns: 1fr; }
+    .design-notes { grid-template-columns: 1fr 1fr; }
+    .nav-header { padding: 16px 20px; gap: 16px; }
+    .concept-header { padding: 32px 20px 24px; }
+    .screens-grid { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<div class="nav-header">
+  <div class="nav-brand">Au<span>Suivant</span> — Design Concepts</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showConcept(1, this)">01 · Élégance Parisienne</div>
+    <div class="nav-tab" onclick="showConcept(2, this)">02 · Inspiré Doctolib</div>
+    <div class="nav-tab" onclick="showConcept(3, this)">03 · Bento Naturel</div>
+    <div class="nav-tab" onclick="showConcept(4, this)">04 · Inspiré Duolingo</div>
+    <div class="nav-tab" onclick="showConcept(5, this)">05 · Doux Confiance</div>
+  </div>
+</div>
+
+<div class="concept visible" id="concept-1">
+  <div class="concept-header">
+    <div class="concept-badge" style="background: rgba(181,148,90,0.12); color: #B5945A;">Concept 01</div>
+    <div class="concept-name" style="color: #fff;">Élégance Parisienne</div>
+    <div class="concept-tagline">The quiet authority of a luxury Parisian journal. Think Vogue Paris meets clinical precision — refined ivory surfaces, gold accents, and editorial typography that conveys absolute confidence without shouting.</div>
+    <div class="concept-pills">
+      <div class="pill">Cormorant Garamond + Lato</div>
+      <div class="pill">Ivory #FAF8F5</div>
+      <div class="pill">Espresso #1A1209</div>
+      <div class="pill">Antique Gold #B5945A</div>
+      <div class="pill">Serif editorial headers</div>
+      <div class="pill">High whitespace ratio</div>
+      <div class="pill">French medical professionals (médecins installés)</div>
+    </div>
+  </div>
+
+  <div class="screens-grid">
+    <!-- Screen 1: Queue Dashboard -->
+    <div>
+      <div class="screen-label">File d'attente — Vue principale</div>
+      <div class="screen-wrapper">
+        <div class="c1-screen">
+          <div class="c1-topbar">
+            <div class="c1-clinic-name">Cabinet Dr. Mercier</div>
+            <div class="c1-topbar-right">
+              <div class="c1-lang">FR</div>
+              <div class="c1-dot"></div>
+              <span class="material-symbols-outlined c1-menu-icon">menu</span>
+            </div>
+          </div>
+          <div class="c1-stats">
+            <div class="c1-stat">
+              <div class="c1-stat-label">En attente</div>
+              <div class="c1-stat-value">4</div>
+            </div>
+            <div class="c1-stat">
+              <div class="c1-stat-label">Vus · Attente max</div>
+              <div class="c1-stat-value" style="font-size: 24px; padding-top: 4px;">8 <span style="font-size:14px; color:#9A8F82;">vus</span></div>
+              <div class="c1-stat-sub">18 min · max</div>
+            </div>
+          </div>
+          <div style="padding: 16px 20px 0;">
+            <div class="c1-search-bar">
+              <span class="material-symbols-outlined" style="color:#C8BFAF; font-size:18px;">search</span>
+              <input type="text" placeholder="Nom du patient..." />
+              <span class="material-symbols-outlined" style="color:#B5945A; font-size:20px;">person_add</span>
+            </div>
+          </div>
+          <div style="padding: 0 20px 8px;">
+            <div class="c1-section-label">En consultation</div>
+            <div class="c1-current-card">
+              <div class="c1-patient-tag">Patient actuel</div>
+              <div class="c1-patient-name">M. Karim M.</div>
+              <div class="c1-patient-meta">Arrivé à 16h08 · Consultation depuis 18 min</div>
+              <div class="c1-card-actions">
+                <button class="c1-btn-primary">
+                  <span class="material-symbols-outlined" style="font-size:14px;">check</span>
+                  Terminer
+                </button>
+                <button class="c1-btn-ghost">
+                  <span class="material-symbols-outlined" style="font-size:18px; color: rgba(255,255,255,0.6);">call</span>
+                </button>
+              </div>
+            </div>
+            <div class="c1-section-label">File d'attente</div>
+            <div class="c1-queue">
+              <div class="c1-queue-item">
+                <div class="c1-pos">2</div>
+                <div style="flex:1">
+                  <div class="c1-qname">Mme Sana T.</div>
+                  <div class="c1-qmeta"><div class="c1-qdot"></div> 38 min · <span style="color:#B5945A;">RDV</span></div>
+                </div>
+                <span class="material-symbols-outlined" style="color:#C8BFAF; font-size:18px;">call</span>
+              </div>
+              <div class="c1-queue-item">
+                <div class="c1-pos">3</div>
+                <div style="flex:1">
+                  <div class="c1-qname">M. Youssef A.</div>
+                  <div class="c1-qmeta"><div class="c1-qdot"></div> 31 min · <span style="color:#9A8F82;">Sans RDV</span></div>
+                </div>
+                <span class="material-symbols-outlined" style="color:#C8BFAF; font-size:18px;">call</span>
+              </div>
+              <div class="c1-queue-item">
+                <div class="c1-pos">4</div>
+                <div style="flex:1">
+                  <div class="c1-qname">Mme Leila B.</div>
+                  <div class="c1-qmeta"><div class="c1-qdot" style="background:#C8A85A;"></div> 24 min</div>
+                </div>
+                <span class="material-symbols-outlined" style="color:#C8BFAF; font-size:18px;">call</span>
+              </div>
+            </div>
+          </div>
+          <div class="c1-cta-bar">
+            <div class="c1-cta-text">→ Appeler suivant · <span class="c1-cta-name">Mme Sana T.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2: Add Patient Drawer -->
+    <div>
+      <div class="screen-label">Nouveau patient — Panneau</div>
+      <div class="screen-wrapper">
+        <div class="c1-screen screen-with-drawer">
+          <!-- blurred bg -->
+          <div class="c1-topbar">
+            <div class="c1-clinic-name">Cabinet Dr. Mercier</div>
+          </div>
+          <div class="c1-stats"><div class="c1-stat"><div class="c1-stat-label">En attente</div><div class="c1-stat-value">4</div></div><div class="c1-stat"><div class="c1-stat-label">Vus</div><div class="c1-stat-value" style="font-size:24px;">8</div></div></div>
+          <div class="drawer-overlay" style="background: rgba(250,248,245,0.75); backdrop-filter: blur(4px);"></div>
+          <div class="drawer c1-drawer">
+            <div class="drawer-handle c1-drawer-handle"></div>
+            <div class="c1-drawer-title">Nouveau patient</div>
+            <div class="c1-field-label">Nom du patient</div>
+            <input class="c1-field-input" type="text" value="Mme Fatma Dridi" />
+            <div class="c1-field-label">Type de visite</div>
+            <div class="c1-chips">
+              <div class="c1-chip active">Sans rendez-vous</div>
+              <div class="c1-chip">Avec rendez-vous</div>
+            </div>
+            <div class="c1-field-label">Numéro de téléphone</div>
+            <div style="display:flex; gap:8px; margin-bottom:14px;">
+              <input class="c1-field-input" style="width:72px; margin:0; text-align:center; color:#9A8F82;" value="+33" readonly />
+              <input class="c1-field-input" style="flex:1; margin:0;" placeholder="06 XX XX XX XX" />
+            </div>
+            <button class="c1-submit">→ Ajouter à la file</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Notes -->
+    <div class="design-notes">
+      <div class="notes-title">Notes de design</div>
+      <div class="note-item">
+        <div class="note-label">Typographie</div>
+        <div class="note-value">Cormorant Garamond pour les titres — la famille de polices serif la plus utilisée dans la presse médicale française de prestige. Lato (300/700) pour le corps.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Palette</div>
+        <div class="note-value">Ivoire chaud #FAF8F5 · Espresso #1A1209 · Or antique #B5945A. Inspiré des papeteries de qualité et des intérieurs de cabinet parisiens.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Cible</div>
+        <div class="note-value">Médecins généralistes installés, 45–65 ans, attachés à leur image professionnelle. Perçoivent la technologie comme devant être "digne" de leur cabinet.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Différenciateur</div>
+        <div class="note-value">La seule app médicale qui ressemble à un objet de luxe. Contraste total avec les SaaS cliniques bleu-gris génériques. Mémorable dès le premier usage.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Risques</div>
+        <div class="note-value">Peut sembler trop "sophistiqué" pour les secrétaires médicales moins à l'aise avec la tech. Tester la lisibilité des polices serif sur petits écrans Android.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="concept" id="concept-2">
+  <div class="concept-header">
+    <div class="concept-badge" style="background: rgba(26,86,219,0.1); color: #1A56DB;">Concept 02</div>
+    <div class="concept-name">Inspiré de Doctolib</div>
+    <div class="concept-tagline">Every French doctor opens Doctolib 10 times a day. This palette — electric blue on pure white — is already burned into their mental model of "trustworthy medical software." AuSuivant wearing this language says: <em>you already know how this feels.</em></div>
+    <div class="concept-pills">
+      <div class="pill">Outfit</div>
+      <div class="pill">Blanc pur #FFFFFF</div>
+      <div class="pill">Bleu Doctolib #1A56DB</div>
+      <div class="pill">Surface #F5F7FF</div>
+      <div class="pill">Cartes blanches shadow légère</div>
+      <div class="pill">Référence n°1 médecins français</div>
+      <div class="pill">70M+ utilisateurs en France</div>
+    </div>
+  </div>
+
+  <div class="screens-grid">
+    <div>
+      <div class="screen-label">File d'attente — Vue principale</div>
+      <div class="screen-wrapper">
+        <div class="c2-screen">
+          <div class="c2-topbar">
+            <div class="c2-clinic-name">Cabinet Dr. Mercier</div>
+            <div class="c2-topbar-right">
+              <div class="c2-status-pill"><div class="c2-status-dot"></div>Médecin présent</div>
+              <button class="c2-menu-btn"><span class="material-symbols-outlined" style="font-size:20px;">menu</span></button>
+            </div>
+          </div>
+          <div class="c2-stats">
+            <div class="c2-stat">
+              <div class="c2-stat-label">En attente</div>
+              <div class="c2-stat-value">4</div>
+              <div class="c2-stat-sub">patients</div>
+            </div>
+            <div class="c2-stat-divider"></div>
+            <div class="c2-stat">
+              <div class="c2-stat-label">Vus · Attente max</div>
+              <div class="c2-stat-value" style="font-size:28px; color:#0A1628;">8</div>
+              <div class="c2-stat-sub">18 min · max</div>
+            </div>
+          </div>
+          <div class="c2-search-row">
+            <input class="c2-search" type="text" placeholder="Rechercher un patient..." />
+            <button class="c2-add-btn"><span class="material-symbols-outlined">person_add</span></button>
+          </div>
+          <div class="c2-section-label">En consultation</div>
+          <div class="c2-current">
+            <div class="c2-curr-tag">Patient actuel</div>
+            <div class="c2-curr-name">M. Karim M.</div>
+            <div class="c2-curr-meta">Arrivé à 16h08 · Consultation depuis 18 min</div>
+            <div class="c2-curr-actions">
+              <button class="c2-finish-btn"><span class="material-symbols-outlined" style="font-size:16px;">check</span>Terminer</button>
+              <div class="c2-call-btn"><span class="material-symbols-outlined" style="font-size:18px;">call</span></div>
+            </div>
+          </div>
+          <div class="c2-section-label">File d'attente</div>
+          <div class="c2-queue">
+            <div class="c2-queue-item">
+              <div class="c2-qpos">2</div>
+              <div style="flex:1"><div class="c2-qname">Mme Sana T.</div><div class="c2-qmeta"><div class="c2-qdot"></div>38 min · RDV</div></div>
+              <span class="material-symbols-outlined c2-qicon">call</span>
+              <span class="material-symbols-outlined c2-qicon">more_vert</span>
+            </div>
+            <div class="c2-queue-item">
+              <div class="c2-qpos">3</div>
+              <div style="flex:1"><div class="c2-qname">M. Youssef A.</div><div class="c2-qmeta"><div class="c2-qdot"></div>31 min</div></div>
+              <span class="material-symbols-outlined c2-qicon">call</span>
+              <span class="material-symbols-outlined c2-qicon">more_vert</span>
+            </div>
+            <div class="c2-queue-item">
+              <div class="c2-qpos">4</div>
+              <div style="flex:1"><div class="c2-qname">Mme Leila B.</div><div class="c2-qmeta"><div class="c2-qdot" style="background:#F59E0B;"></div>24 min</div></div>
+              <span class="material-symbols-outlined c2-qicon">call</span>
+              <span class="material-symbols-outlined c2-qicon">more_vert</span>
+            </div>
+          </div>
+          <div class="c2-cta">
+            <button class="c2-cta-btn">
+              <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span>
+              Appeler suivant · Mme Sana T.
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="screen-label">Nouveau patient — Panneau</div>
+      <div class="screen-wrapper">
+        <div class="c2-screen screen-with-drawer">
+          <div class="c2-topbar">
+            <div class="c2-clinic-name">Cabinet Dr. Mercier</div>
+          </div>
+          <div class="c2-stats">
+            <div class="c2-stat"><div class="c2-stat-label">En attente</div><div class="c2-stat-value">4</div></div>
+            <div class="c2-stat-divider"></div>
+            <div class="c2-stat"><div class="c2-stat-label">Vus</div><div class="c2-stat-value" style="font-size:28px; color:#0A1628;">8</div></div>
+          </div>
+          <div class="drawer-overlay" style="background: rgba(245,247,255,0.75); backdrop-filter: blur(4px);"></div>
+          <div class="drawer c2-drawer">
+            <div class="drawer-handle c2-drawer-handle"></div>
+            <div class="c2-drawer-title">Nouveau patient</div>
+            <div class="c2-dfield-label">Nom du patient</div>
+            <input class="c2-dfield-input" value="Mme Fatma Dridi" />
+            <div class="c2-dfield-label">Type de visite</div>
+            <div class="c2-dchips">
+              <div class="c2-dchip active">Sans rendez-vous</div>
+              <div class="c2-dchip">Avec rendez-vous</div>
+            </div>
+            <div class="c2-dfield-label">Téléphone (optionnel)</div>
+            <div style="display:flex; gap:8px; margin-bottom:14px;">
+              <input class="c2-dfield-input" style="width:72px; margin:0; text-align:center;" value="+33" />
+              <input class="c2-dfield-input" style="flex:1; margin:0;" placeholder="06 XX XX XX XX" />
+            </div>
+            <button class="c2-dsubmit">Ajouter à la file</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-notes">
+      <div class="notes-title">Notes de design</div>
+      <div class="note-item">
+        <div class="note-label">Référence</div>
+        <div class="note-value">Doctolib est l'app médicale la plus utilisée en France avec 70M+ utilisateurs. Son bleu électrique #1A56DB est le premier signal visuel que les médecins associent à "logiciel médical fiable".</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Palette</div>
+        <div class="note-value">Blanc pur #FFFFFF · Bleu Doctolib #1A56DB · Surface froide #F5F7FF · Texte #0A1628. Contraste AA+ sur tous les éléments. Fonctionnel en extérieur soleil.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Typographie</div>
+        <div class="note-value">Outfit — modern geometric, perçue comme "tech professionnelle" sans être froide. Le poids 700/900 sur les chiffres crée une hiérarchie immédiate. Lecture facile.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Stratégie</div>
+        <div class="note-value">Capitalise sur le transfert d'autorité de Doctolib vers AuSuivant. Un médecin qui voit cet écran pense "ceci est de même niveau que Doctolib" — sans qu'on le dise.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Risques</div>
+        <div class="note-value">Trop proche de Doctolib visuellement peut brouiller l'identité de marque AuSuivant. Doser le bleu et préserver un élément distinctif fort (ex. CTA arrondi vs Doctolib rectangulaire).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="concept" id="concept-3">
+  <div class="concept-header">
+    <div class="concept-badge" style="background: rgba(197,113,90,0.15); color: #C5715A;">Concept 03</div>
+    <div class="concept-name">Bento Naturel</div>
+    <div class="concept-tagline">Organic warmth meets rigorous structure. Limestone backgrounds, terracotta accents, and a bento-grid stat layout inspired by 2026's "warm neutral" color movement and Pantone's Cloud Dancer palette. Human and grounding.</div>
+    <div class="concept-pills">
+      <div class="pill">Figtree</div>
+      <div class="pill">Limestone #F4EFE8</div>
+      <div class="pill">Terracotta #C5715A</div>
+      <div class="pill">Espresso #1C1008</div>
+      <div class="pill">Bento grid cards</div>
+      <div class="pill">Organic forme language</div>
+      <div class="pill">Pantone Cloud Dancer 2026</div>
+    </div>
+  </div>
+
+  <div class="screens-grid">
+    <div>
+      <div class="screen-label">File d'attente — Vue principale</div>
+      <div class="screen-wrapper">
+        <div class="c3-screen">
+          <div class="c3-topbar">
+            <div class="c3-clinic-name">Cabinet Dr. Mercier</div>
+            <div class="c3-topbar-chips">
+              <button class="c3-lang-chip">FR</button>
+              <button class="c3-menu-btn"><span class="material-symbols-outlined" style="font-size:20px;">menu</span></button>
+            </div>
+          </div>
+          <div class="c3-bento">
+            <div class="c3-bento-card accent">
+              <div class="c3-bento-label">En attente</div>
+              <div class="c3-bento-value">4</div>
+              <div class="c3-bento-sub">patients</div>
+            </div>
+            <div class="c3-bento-card">
+              <div class="c3-bento-label">Vus</div>
+              <div class="c3-bento-value">8</div>
+              <div class="c3-bento-sub">18 min max</div>
+            </div>
+          </div>
+          <div class="c3-search-row">
+            <input class="c3-search" type="text" placeholder="Nom du patient..." />
+            <button class="c3-add-btn"><span class="material-symbols-outlined">person_add</span></button>
+          </div>
+          <div style="padding: 0 18px 8px;">
+            <div class="c3-current">
+              <div class="c3-curr-name">M. Karim M.</div>
+              <div class="c3-curr-meta">Arrivé à 16h08 · 18 min de consultation</div>
+              <div class="c3-curr-actions">
+                <button class="c3-end-btn"><span class="material-symbols-outlined" style="font-size:16px;">check</span>Terminer</button>
+                <div class="c3-phone-btn"><span class="material-symbols-outlined" style="font-size:18px;">call</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="c3-queue-section-label">File d'attente</div>
+          <div class="c3-queue">
+            <div class="c3-queue-item">
+              <div class="c3-qpos">2</div>
+              <div style="flex:1"><div class="c3-qname">Mme Sana T.</div><div class="c3-qmeta"><div class="c3-time-dot"></div>38 min · RDV</div></div>
+              <span class="material-symbols-outlined" style="color:#C0B5A7; font-size:18px;">call</span>
+            </div>
+            <div class="c3-queue-item">
+              <div class="c3-qpos">3</div>
+              <div style="flex:1"><div class="c3-qname">M. Youssef A.</div><div class="c3-qmeta"><div class="c3-time-dot"></div>31 min</div></div>
+              <span class="material-symbols-outlined" style="color:#C0B5A7; font-size:18px;">call</span>
+            </div>
+            <div class="c3-queue-item">
+              <div class="c3-qpos">4</div>
+              <div style="flex:1"><div class="c3-qname">Mme Leila B.</div><div class="c3-qmeta"><div class="c3-time-dot" style="background:#E8A855;"></div>24 min</div></div>
+              <span class="material-symbols-outlined" style="color:#C0B5A7; font-size:18px;">call</span>
+            </div>
+          </div>
+          <div class="c3-cta">
+            <div class="c3-cta-row">
+              <span class="material-symbols-outlined c3-cta-arrow">arrow_forward</span>
+              <div class="c3-cta-text">Appeler suivant · <span class="c3-cta-name">Mme Sana T.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="screen-label">Nouveau patient — Panneau</div>
+      <div class="screen-wrapper">
+        <div class="c3-screen screen-with-drawer">
+          <div class="c3-topbar"><div class="c3-clinic-name">Cabinet Dr. Mercier</div></div>
+          <div class="c3-bento">
+            <div class="c3-bento-card accent"><div class="c3-bento-label">En attente</div><div class="c3-bento-value">4</div></div>
+            <div class="c3-bento-card"><div class="c3-bento-label">Vus</div><div class="c3-bento-value">8</div></div>
+          </div>
+          <div class="drawer-overlay" style="background: rgba(244,239,232,0.7); backdrop-filter: blur(4px);"></div>
+          <div class="drawer c3-drawer">
+            <div class="drawer-handle c3-drawer-handle"></div>
+            <div class="c3-drawer-title">Nouveau patient</div>
+            <div class="c3-dfield-label">Nom du patient</div>
+            <input class="c3-dfield-input" value="Mme Fatma Dridi" />
+            <div class="c3-dfield-label">Type de visite</div>
+            <div class="c3-dchips">
+              <div class="c3-dchip active">Sans rendez-vous</div>
+              <div class="c3-dchip">Avec rendez-vous</div>
+            </div>
+            <div class="c3-dfield-label">Téléphone (optionnel)</div>
+            <div style="display:flex; gap:8px; margin-bottom:12px;">
+              <input class="c3-dfield-input" style="width:72px; margin:0; text-align:center;" value="+33" />
+              <input class="c3-dfield-input" style="flex:1; margin:0;" placeholder="06 XX XX XX XX" />
+            </div>
+            <button class="c3-dsubmit">→ Ajouter à la file</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-notes">
+      <div class="notes-title">Notes de design</div>
+      <div class="note-item">
+        <div class="note-label">Typographie</div>
+        <div class="note-value">Figtree — chaleureuse, géométrique arrondie. Lisible sur tous les appareils, perçue comme "accessible mais sérieuse". Bonne harmonie avec le bento grid.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Palette</div>
+        <div class="note-value">Limestone #F4EFE8 (Pantone Cloud Dancer 2026) · Terracotta #C5715A · Espresso #1C1008. Palette "quiet luxury" adaptée au contexte médical humain.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Cible</div>
+        <div class="note-value">Cabinets de médecine de ville, généralistes ruraux ou semi-urbains. Médecins attachés à un rapport humain avec leurs patients, anti-"corporate".</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Différenciateur</div>
+        <div class="note-value">Le bento grid crée des zones de lecture claires sans avoir recours aux listes. La terracotta réchauffise sans infantiliser. Unique dans l'espace SaaS médical.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Risques</div>
+        <div class="note-value">Le biscuit / ivoire peut être perçu comme "ancien" par une clientèle jeune. Équilibrer avec des arrondis modernes et une typographie bien pesée.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="concept" id="concept-4">
+  <div class="concept-header">
+    <div class="concept-badge" style="background: rgba(76,175,80,0.12); color: #388E3C;">Concept 04</div>
+    <div class="concept-name">Inspiré de Duolingo</div>
+    <div class="concept-tagline">France's top education app (#1 downloaded) has cracked the retention code: bold greens, rounded "pill" cards with depth shadows, and numbers that feel like progress. Adapted from language learning to queue management — because both are about showing up every day.</div>
+    <div class="concept-pills">
+      <div class="pill">Nunito (700–900)</div>
+      <div class="pill">Vert Duolingo #4CAF50</div>
+      <div class="pill">Fond #F2F9F2</div>
+      <div class="pill">Jaune accent #FFD000</div>
+      <div class="pill">Cartes 3D shadow (0 4px 0)</div>
+      <div class="pill">Arrondis 16–20px</div>
+      <div class="pill">App n°1 éducation France 2025</div>
+    </div>
+  </div>
+
+  <div class="screens-grid">
+    <div>
+      <div class="screen-label">File d'attente — Vue principale</div>
+      <div class="screen-wrapper">
+        <div class="c4-screen">
+          <div class="c4-topbar">
+            <div class="c4-clinic-name">Cabinet Dr. Mercier</div>
+            <div class="c4-streak-badge">
+              <span class="material-symbols-outlined" style="font-size:14px; color:#F59E0B;">bolt</span>
+              Essai · 7 jours
+            </div>
+            <button class="c4-menu-btn"><span class="material-symbols-outlined" style="font-size:20px;">menu</span></button>
+          </div>
+          <div class="c4-stats">
+            <div class="c4-stat-card green">
+              <div class="c4-stat-label">En attente</div>
+              <div class="c4-stat-value">4</div>
+              <div class="c4-stat-sub">patients</div>
+            </div>
+            <div class="c4-stat-card">
+              <div class="c4-stat-label">Vus · Max</div>
+              <div class="c4-stat-value" style="font-size:28px;">8</div>
+              <div class="c4-stat-sub">18 min max</div>
+            </div>
+          </div>
+          <div class="c4-search-row">
+            <input class="c4-search" type="text" placeholder="Nom du patient..." />
+            <button class="c4-add-btn"><span class="material-symbols-outlined">person_add</span></button>
+          </div>
+          <div class="c4-section-label">En consultation</div>
+          <div style="padding: 0 14px 14px;">
+            <div class="c4-current">
+              <div class="c4-curr-progress"></div>
+              <div class="c4-curr-tag">Patient actuel</div>
+              <div class="c4-curr-name">M. Karim M.</div>
+              <div class="c4-curr-meta">Arrivé à 16h08 · Consultation depuis 18 min</div>
+              <div class="c4-curr-actions">
+                <button class="c4-end-btn"><span class="material-symbols-outlined" style="font-size:16px;">check_circle</span>Terminer</button>
+                <div class="c4-phone-btn"><span class="material-symbols-outlined" style="font-size:18px;">call</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="c4-section-label">File d'attente</div>
+          <div class="c4-queue">
+            <div class="c4-queue-item">
+              <div class="c4-qpos">2</div>
+              <div style="flex:1"><div class="c4-qname">Mme Sana T.</div><div class="c4-qmeta"><div class="c4-qdot"></div>38 min · RDV</div></div>
+              <span class="material-symbols-outlined c4-qicon">call</span>
+              <span class="material-symbols-outlined c4-qicon">more_vert</span>
+            </div>
+            <div class="c4-queue-item">
+              <div class="c4-qpos">3</div>
+              <div style="flex:1"><div class="c4-qname">M. Youssef A.</div><div class="c4-qmeta"><div class="c4-qdot"></div>31 min</div></div>
+              <span class="material-symbols-outlined c4-qicon">call</span>
+              <span class="material-symbols-outlined c4-qicon">more_vert</span>
+            </div>
+          </div>
+          <div class="c4-cta">
+            <button class="c4-cta-btn">
+              <span class="material-symbols-outlined" style="font-size:20px;">arrow_forward</span>
+              Appeler suivant · Mme Sana T.
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="screen-label">Nouveau patient — Panneau</div>
+      <div class="screen-wrapper">
+        <div class="c4-screen screen-with-drawer">
+          <div class="c4-topbar">
+            <div class="c4-clinic-name">Cabinet Dr. Mercier</div>
+            <div class="c4-streak-badge"><span class="material-symbols-outlined" style="font-size:14px; color:#F59E0B;">bolt</span>7 jours</div>
+          </div>
+          <div class="c4-stats">
+            <div class="c4-stat-card green"><div class="c4-stat-label">En attente</div><div class="c4-stat-value">4</div></div>
+            <div class="c4-stat-card"><div class="c4-stat-label">Vus</div><div class="c4-stat-value" style="font-size:28px;">8</div></div>
+          </div>
+          <div class="drawer-overlay" style="background: rgba(242,249,242,0.75); backdrop-filter: blur(4px);"></div>
+          <div class="drawer c4-drawer">
+            <div class="drawer-handle c4-drawer-handle"></div>
+            <div class="c4-drawer-title">Nouveau patient</div>
+            <div class="c4-dfield-label">Nom du patient</div>
+            <input class="c4-dfield-input" value="Mme Fatma Dridi" />
+            <div class="c4-dfield-label">Type de visite</div>
+            <div class="c4-dchips">
+              <div class="c4-dchip active">Sans rendez-vous</div>
+              <div class="c4-dchip">Avec rendez-vous</div>
+            </div>
+            <div class="c4-dfield-label">Téléphone (optionnel)</div>
+            <div style="display:flex; gap:8px; margin-bottom:14px;">
+              <input class="c4-dfield-input" style="width:72px; margin:0; text-align:center;" value="+33" />
+              <input class="c4-dfield-input" style="flex:1; margin:0;" placeholder="06 XX XX XX XX" />
+            </div>
+            <button class="c4-dsubmit">Ajouter à la file</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-notes">
+      <div class="notes-title">Notes de design</div>
+      <div class="note-item">
+        <div class="note-label">Référence</div>
+        <div class="note-value">Duolingo est l'app d'éducation la plus téléchargée en France (500M+ téléchargements mondiaux). Son langage visuel — vert, cartes 3D, rounded — est associé à la progression quotidienne.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Palette</div>
+        <div class="note-value">Vert #4CAF50 · Fond pâle #F2F9F2 · Blanc #FFFFFF · Jaune Flash #FFD000 · Charbon #1A2E1A. La shadow "3D" (0 4px 0) crée la sensation de bouton physique pressable.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Typographie</div>
+        <div class="note-value">Nunito weight 800–900 — arrondie, confiante, énergique. Duolingo utilise des polices extra-bold arrondies pour déclencher une réponse émotionnelle positive aux chiffres.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Stratégie</div>
+        <div class="note-value">Le badge "Essai · 7 jours" reprend les mécaniques de streak Duolingo. Les secrétaires médicales qui connaissent Duo reconnaissent intuitivement la logique de progression. Fort signal d'engagement.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Risques</div>
+        <div class="note-value">Le registre "gamifié" peut sembler trop informel pour des médecins spécialistes. Recommandé pour les généralistes et pédiatres — moins adapté aux chirurgiens ou oncologues.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="concept" id="concept-5">
+  <div class="concept-header">
+    <div class="concept-badge" style="background: rgba(126,181,160,0.15); color: #7EB5A0;">Concept 05</div>
+    <div class="concept-name">Doux Confiance</div>
+    <div class="concept-tagline">The interface as a calm room. Sage greens, warm whites, and deep forest accents borrowed from French wellness and pharmacy aesthetics. Every element is rounded, soft, and reassuring — for the clinic that wants to feel like care, not a startup.</div>
+    <div class="concept-pills">
+      <div class="pill">Albert Sans</div>
+      <div class="pill">Parchemin #F8F7F4</div>
+      <div class="pill">Sauge #7EB5A0</div>
+      <div class="pill">Forêt #2C4A3E</div>
+      <div class="pill">Arrondi généreux (18–20px)</div>
+      <div class="pill">Barre dégradée signature</div>
+      <div class="pill">Pharmaco / bien-être français</div>
+    </div>
+  </div>
+
+  <div class="screens-grid">
+    <div>
+      <div class="screen-label">File d'attente — Vue principale</div>
+      <div class="screen-wrapper">
+        <div class="c5-screen">
+          <div class="c5-accent-bar"></div>
+          <div class="c5-topbar">
+            <div class="c5-clinic-name">Cabinet Dr. Mercier</div>
+            <div class="c5-present-badge"><div class="c5-present-dot"></div>Présent</div>
+          </div>
+          <div class="c5-stats">
+            <div class="c5-stat">
+              <div class="c5-stat-label">En attente</div>
+              <div class="c5-stat-value">4</div>
+              <div class="c5-stat-sub"><span class="c5-live-dot"></span>En direct</div>
+            </div>
+            <div class="c5-stat-divider"></div>
+            <div class="c5-stat">
+              <div class="c5-stat-label">Vus · Attente max</div>
+              <div class="c5-stat-value" style="font-size:26px;">8</div>
+              <div class="c5-stat-sub">18 min max</div>
+            </div>
+          </div>
+          <div class="c5-search-row">
+            <input class="c5-search" type="text" placeholder="Nom du patient..." />
+            <button class="c5-add-btn"><span class="material-symbols-outlined">person_add</span></button>
+          </div>
+          <div class="c5-section-label">En consultation</div>
+          <div style="margin: 0 18px 14px;">
+            <div class="c5-current">
+              <div class="c5-curr-tag">Patient actuel</div>
+              <div class="c5-curr-name">M. Karim M.</div>
+              <div class="c5-curr-meta">Arrivé à 16h08 · Consultation depuis 18 min</div>
+              <div class="c5-curr-actions">
+                <button class="c5-end-btn"><span class="material-symbols-outlined" style="font-size:16px;">check_circle</span>Terminer</button>
+                <div class="c5-phone-btn"><span class="material-symbols-outlined" style="font-size:18px;">call</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="c5-section-label">File d'attente</div>
+          <div class="c5-queue">
+            <div class="c5-queue-item">
+              <div class="c5-qpos">2</div>
+              <div style="flex:1"><div class="c5-qname">Mme Sana T.</div><div class="c5-qmeta"><div class="c5-qdot"></div>38 min · RDV</div></div>
+              <span class="material-symbols-outlined" style="color:#C0C9C4; font-size:18px;">call</span>
+            </div>
+            <div class="c5-queue-item">
+              <div class="c5-qpos">3</div>
+              <div style="flex:1"><div class="c5-qname">M. Youssef A.</div><div class="c5-qmeta"><div class="c5-qdot"></div>31 min</div></div>
+              <span class="material-symbols-outlined" style="color:#C0C9C4; font-size:18px;">call</span>
+            </div>
+          </div>
+          <div class="c5-cta">
+            <div class="c5-cta-row">
+              <span class="material-symbols-outlined c5-cta-arrow">arrow_forward</span>
+              <div class="c5-cta-text">Appeler suivant · <span class="c5-cta-name">Mme Sana T.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="screen-label">Nouveau patient — Panneau</div>
+      <div class="screen-wrapper">
+        <div class="c5-screen screen-with-drawer">
+          <div class="c5-accent-bar"></div>
+          <div class="c5-topbar"><div class="c5-clinic-name">Cabinet Dr. Mercier</div></div>
+          <div class="c5-stats">
+            <div class="c5-stat"><div class="c5-stat-label">En attente</div><div class="c5-stat-value">4</div></div>
+            <div class="c5-stat-divider"></div>
+            <div class="c5-stat"><div class="c5-stat-label">Vus</div><div class="c5-stat-value" style="font-size:26px;">8</div></div>
+          </div>
+          <div class="drawer-overlay" style="background: rgba(248,247,244,0.7); backdrop-filter: blur(4px);"></div>
+          <div class="drawer c5-drawer">
+            <div class="drawer-handle c5-drawer-handle"></div>
+            <div class="c5-drawer-title">Nouveau patient</div>
+            <div class="c5-dfield-label">Nom du patient</div>
+            <input class="c5-dfield-input" value="Mme Fatma Dridi" />
+            <div class="c5-dfield-label">Type de visite</div>
+            <div class="c5-dchips">
+              <div class="c5-dchip active">Sans rendez-vous</div>
+              <div class="c5-dchip">Avec rendez-vous</div>
+            </div>
+            <div class="c5-dfield-label">Téléphone (optionnel)</div>
+            <div style="display:flex; gap:8px; margin-bottom:12px;">
+              <input class="c5-dfield-input" style="width:72px; margin:0; text-align:center;" value="+33" />
+              <input class="c5-dfield-input" style="flex:1; margin:0;" placeholder="06 XX XX XX XX" />
+            </div>
+            <button class="c5-dsubmit">Ajouter à la file</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="design-notes">
+      <div class="notes-title">Notes de design</div>
+      <div class="note-item">
+        <div class="note-label">Typographie</div>
+        <div class="note-value">Albert Sans — familiale, chaleureuse, très lisible. Perçue comme "bienveillante mais compétente". Excellent rapport avec la palette sage-verte.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Palette</div>
+        <div class="note-value">Parchemin #F8F7F4 · Sauge #7EB5A0 · Forêt #2C4A3E · Sable #D4B896. La barre dégradée tricolore en signature visuelle distinctive et mémorable.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Cible</div>
+        <div class="note-value">Médecins généralistes féminins (sur-représentées en France), kinésithérapeutes, pédiatres. Cabinets qui valorisent l'accueil et le confort patient par-dessus tout.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Différenciateur</div>
+        <div class="note-value">La barre signature tricolore crée une identité immédiatement reconnaissable. L'ensemble évoque la pharmacie française haut de gamme — rassurante, propre, bienveillante.</div>
+      </div>
+      <div class="note-item">
+        <div class="note-label">Risques</div>
+        <div class="note-value">La douceur peut être perçue comme un manque de sérieux dans des cabinets chirurgicaux ou spécialisés. À renforcer avec une typographie plus ferme si nécessaire.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function showConcept(n, tab) {
+    document.querySelectorAll('.concept').forEach(c => c.classList.remove('visible'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('concept-' + n).classList.add('visible');
+    tab.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
